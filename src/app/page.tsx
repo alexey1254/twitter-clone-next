@@ -4,6 +4,7 @@ import { AuthButton } from "./components/auth-button-client";
 import { AuthButtonServer } from "./components/auth-button-server";
 import { redirect } from "next/navigation";
 import PostCard from "./components/post-card";
+import { PostList } from "./components/posts-list";
 
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
@@ -18,26 +19,11 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <AuthButtonServer />
-      {posts?.map((post) => {
-        const { id, users, content } = post;
-
-        const {
-          user_name: userName,
-          name: userFullName,
-          avatar_url: avatarUrl,
-        }= users;
-
-        return (
-          <PostCard
-            userName={userName}
-            userFullName={userFullName}
-            avatarUrl={avatarUrl}
-            content={content}
-          />
-        );
-      })}
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <section className="max-w-[600px] mx-auto border-l border-r border-white/30 min-h-screen">
+        <AuthButtonServer />
+        <PostList posts={posts} />
+      </section>
     </main>
   );
 }

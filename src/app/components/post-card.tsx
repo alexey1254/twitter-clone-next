@@ -26,7 +26,7 @@ export default function PostCard({
   const [isFollowed, setIsFollowed] = React.useState(false);
 
   return (
-    <Card className="max-w-[340px]">
+    <Card  className="bg-transparent shadow-none cursor-pointer hover:bg-slate-800 transition border-b border-white/20 rounded-none">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Link href={`/${userName}`}>
@@ -42,20 +42,7 @@ export default function PostCard({
             </h5>
           </div>
         </div>
-        <Button
-          className={
-            isFollowed
-              ? "bg-transparent text-foreground border-default-200"
-              : ""
-          }
-          color="primary"
-          radius="full"
-          size="sm"
-          variant={isFollowed ? "bordered" : "solid"}
-          onPress={() => setIsFollowed(!isFollowed)}
-        >
-          {isFollowed ? "Unfollow" : "Follow"}
-        </Button>
+        
       </CardHeader>
       <CardBody className="px-3 py-0 text-small text-white">
         <p>{content}</p>
